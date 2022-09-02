@@ -11,7 +11,7 @@ import SwiftUI
 struct G_Fit_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
         }
     }
 }

@@ -8,55 +8,75 @@
 import SwiftUI
 
 struct SplashScreenView: View {
-    @State var isAnimated  =  true
+    @State var isAnimated  =  false
+    @State var isActive  =  false
     
     var body: some View {
-        ZStack {
+        
+        if isActive {
+            ContentView()
+        } else {
             
-            /*@START_MENU_TOKEN@*/Color(red: 0.058823529411764705, green: 0.5254901960784314, blue: 0.4235294117647059)/*@END_MENU_TOKEN@*/
-                .ignoresSafeArea(.all)
-            
-            Image("splashImage")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 453, height: 641)
-                .offset(y: isAnimated ? 300 : 0)
-                .opacity(isAnimated ? 0 : 1.0)
-                .animation(.easeOut(duration: 3), value: isAnimated)
-            
-            
-            HStack{
+            ZStack {
                 
-                    Text("G -")
-                        .font(Font.custom("Avenir Black", size: 60))
-                    .foregroundColor(.white)
+                /*@START_MENU_TOKEN@*/Color(red: 0.058823529411764705, green: 0.5254901960784314, blue: 0.4235294117647059)/*@END_MENU_TOKEN@*/
+                    .ignoresSafeArea(.all)
+                
+                Image("splashImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 453, height: 641)
+                    .offset(y: isAnimated ? 0 : 300)
+                    .opacity(isAnimated ? 1.0 : 0)
+                    .animation(.easeOut(duration: 3), value: isAnimated)
+                    .onAppear(){
+                        isAnimated.toggle()
+                    }
+                
+                
+                HStack{
                     
-                    
-                ZStack {
-                    Rectangle()
-                        .fill(.white)
-                        .frame(width: 110, height: 72, alignment: .center)
-                        .cornerRadius(17)
-                    
-                    Text("FIT")
+                        Text("G -")
                             .font(Font.custom("Avenir Black", size: 60))
-                        .foregroundColor(/*@START_MENU_TOKEN@*/Color(red: 0.058823529411764705, green: 0.5254901960784314, blue: 0.4235294117647059)/*@END_MENU_TOKEN@*/)
-       
+                        .foregroundColor(.white)
+                        
+                        
+                    ZStack {
+                        Rectangle()
+                            .fill(.white)
+                            .frame(width: 110, height: 72, alignment: .center)
+                            .cornerRadius(17)
+                        
+                        Text("FIT")
+                                .font(Font.custom("Avenir Black", size: 60))
+                            .foregroundColor(/*@START_MENU_TOKEN@*/Color(red: 0.058823529411764705, green: 0.5254901960784314, blue: 0.4235294117647059)/*@END_MENU_TOKEN@*/)
+           
+                    }
+                    
                 }
+                .opacity(isAnimated ? 1.0 : 0)
+                .offset(y: isAnimated ? 0 : 300)
+                .animation(.easeOut(duration: 2).delay(3.0), value: isAnimated)
                 
+                
+                
+                
+                
+                
+            }.onAppear(){
+              
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+                    isActive.toggle()
+                    
+                  
+                }
             }
-            .opacity(isAnimated ? 0 : 1.0)
-            .offset(y: isAnimated ? 300 : 0)
-            .animation(.easeOut(duration: 3).delay(3.0), value: isAnimated)
             
-            
-            
-            
-            
-            
-        }.onAppear(){
-            isAnimated.toggle()
         }
+                
+        
+       
     }
 }
 

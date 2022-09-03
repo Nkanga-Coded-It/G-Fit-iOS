@@ -71,6 +71,11 @@ struct ContentView: View {
             
             HStack {
                 Spacer()
+                    .frame(width:244)
+                
+                
+               
+               
                 
                 Button(action: {
                                     
@@ -82,12 +87,16 @@ struct ContentView: View {
                                         .font(Font.custom("Avenir Light", size: 18))
                                         .foregroundColor(.black)
                                         .underline()
-                                        .frame(width: 150, height: 25, alignment: .trailing)
-                                        .padding(.top,53)
+                                        .frame(width: 150, height: 25)
+                                        .padding(.top,50)
                                         .padding(.bottom,30)
                                         .padding(.trailing,38)
                                         
                             })
+                
+                
+             
+               
             }
             
             

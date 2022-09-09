@@ -14,7 +14,9 @@ struct SplashScreenView: View {
     var body: some View {
         
         if isActive {
-            ContentView()
+            
+            OnBoardingScreen()
+           
         } else {
             
             ZStack {
@@ -22,16 +24,19 @@ struct SplashScreenView: View {
                 /*@START_MENU_TOKEN@*/Color(red: 0.058823529411764705, green: 0.5254901960784314, blue: 0.4235294117647059)/*@END_MENU_TOKEN@*/
                     .ignoresSafeArea(.all)
                 
-                Image("splashImage")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 453, height: 641)
-                    .offset(y: isAnimated ? 0 : 300)
-                    .opacity(isAnimated ? 1.0 : 0)
-                    .animation(.easeOut(duration: 3), value: isAnimated)
-                    .onAppear(){
-                        isAnimated.toggle()
+                
+                    
+                    Image("splashImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 453, height: 641, alignment: .center)
+                        .offset(y: isAnimated ? 0 : 200)
+                        .opacity(isAnimated ? 1.0 : 0)
+                        .animation(.easeOut(duration: 3), value: isAnimated)
+                        .onAppear(){
+                            isAnimated.toggle()
                     }
+                
                 
                 
                 HStack{
